@@ -9,7 +9,7 @@ Authors:
 
 Link to Presentation - Coming soon!
 
-[**Link to GitHub project**](https://github.com/parallaxsecond/parsec)
+[**Link to GitHub project**](https://github.com/rancher/k3s)
 
 ### Project Goal
 
