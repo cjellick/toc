@@ -271,7 +271,6 @@ The following is a table of dependent libraries and their libraries, as reported
 | github.com/golang/protobuf/LICENSE  | BSD-3-Clause |
 | github.com/json-iterator/go/LICENSE  | MIT |
 | github.com/miekg/dns/LICENSE | BSD-3-Clause |
-| github.com/miekg/dns/COPYRIGHT,Confidence threshold not high enough for any known license |
 | github.com/GoogleCloudPlatform/k8s-cloud-provider/LICENSE | Apache-2.0 |
 | github.com/google/gofuzz/LICENSE | Apache-2.0 |
 | github.com/google/go-cmp/LICENSE  | BSD-3-Clause |
@@ -306,14 +305,14 @@ The following is a table of dependent libraries and their libraries, as reported
 | github.com/go-openapi/analysis/LICENSE | Apache-2.0 |
 | github.com/go-openapi/runtime/LICENSE | Apache-2.0 |
 | github.com/go-openapi/spec/LICENSE | Apache-2.0 |
-| github.com/go-openapi/spec/license.go| Apache-2.0,kind:header |
+| github.com/go-openapi/spec/license.go| Apache-2.0 |
 | github.com/go-openapi/swag/LICENSE | Apache-2.0 |
 | github.com/go-openapi/errors/LICENSE | Apache-2.0 |
 | github.com/go-openapi/jsonpointer/LICENSE | Apache-2.0 |
 | github.com/go-openapi/jsonreference/LICENSE | Apache-2.0 |
 | github.com/peterbourgon/diskv/LICENSE  | MIT |
 | github.com/checkpoint-restore/go-criu/LICENSE | Apache-2.0 |
-| github.com/juju/errors/LICENSE 0.912832 | LGPL-3.0-only,aliases:[LGPL-3.0-or-later] |,containing:[] | |
+| github.com/juju/errors/LICENSE 0.912832 | LGPL-3.0-only |
 | github.com/lxc/lxd/COPYING| Apache-2.0 |
 | github.com/imdario/mergo/LICENSE  | BSD-3-Clause |
 | github.com/jonboulle/clockwork/LICENSE | Apache-2.0 |
