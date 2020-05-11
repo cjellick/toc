@@ -124,7 +124,7 @@ _List the repos for the project and their current license_
 - github.com/rancher/helm-controller - Apache 2.0
 - github.com/rancher/klipper-helm - Apache 2.0
 - github.com/rancher/klipper-lb - Apache 2.0
-
+- https://github.com/rancher/k3s-root - Apache 2.0
 
 _List any dependent repos (upstream/downstream) that are required to build the project (including but not limited to libraries, commercial tools, plugins)_
 
@@ -405,13 +405,14 @@ The following is a table of dependent libraries and their libraries, as reported
 | github.com/vmware/govmomi/vim25/xml/LICENSE  | BSD-3-Clause |
 | github.com/vmware/govmomi/LICENSE.txt| Apache-2.0 |
 
-Additionally, the following technologies are shipped with k3s:
+Additionally, k3s ships with or leverages the following technologies:
 | Technology | License |
 | ------------- | ------------- |
 | https://github.com/containous/traefik | MIT |
 | https://github.com/helm/helm | Apache 2.0 |
 | https://github.com/coredns/coredns | Apache 2.0 |
-
+| https://github.com/buildroot/buildroot | GPL v2 | 
+| https://github.com/mirror/busybox/blob/master/LICENSE | GPL v2
 
 _What actions are required to be compliant with the IP policy?_
 
