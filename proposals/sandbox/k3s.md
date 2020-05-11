@@ -124,7 +124,7 @@ _List the repos for the project and their current license_
 - github.com/rancher/helm-controller - Apache 2.0
 - github.com/rancher/klipper-helm - Apache 2.0
 - github.com/rancher/klipper-lb - Apache 2.0
-- https://github.com/rancher/k3s-root - Apache 2.0
+- github.com/rancher/k3s-root - Apache 2.0
 
 _List any dependent repos (upstream/downstream) that are required to build the project (including but not limited to libraries, commercial tools, plugins)_
 
