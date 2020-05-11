@@ -249,12 +249,12 @@ The following is a table of dependent libraries and their libraries, as reported
 | github.com/fsnotify/fsnotify/LICENSE  | BSD-3-Clause |
 | github.com/beorn7/perks/LICENSE  | MIT |
 | github.com/go-bindata/go-bindata/LICENSE | Confidence threshold not high enough for any known license |
-| github.com/go-sql-driver/mysql/LICENSE 1.0 | MPL-2.0,aliases:[MPL-2.0-no-copyleft-exception] |,containing:[] | |
+| github.com/go-sql-driver/mysql/LICENSE 1.0 | MPL-2.0 |
 | github.com/go-stack/stack/LICENSE.md| MIT |
 | github.com/canonical/go-dqlite/LICENSE | Apache-2.0 |
 | github.com/vishvananda/netns/LICENSE | Apache-2.0 |
 | github.com/vishvananda/netlink/LICENSE | Apache-2.0 |
-| github.com/hashicorp/golang-lru/LICENSE 1.0 | MPL-2.0,aliases:[MPL-2.0-no-copyleft-exception] |,containing:[] | |
+| github.com/hashicorp/golang-lru/LICENSE 1.0 | MPL-2.0 |
 | github.com/Azure/go-ansiterm/LICENSE | MIT |
 | github.com/Azure/go-autorest/tracing/LICENSE | Apache-2.0 |
 | github.com/Azure/go-autorest/logger/LICENSE | Apache-2.0 |
@@ -356,7 +356,7 @@ The following is a table of dependent libraries and their libraries, as reported
 | github.com/rancher/kine/LICENSE | Apache-2.0 |
 | github.com/rancher/helm-controller/LICENSE | Apache-2.0 |
 | github.com/rancher/remotedialer/LICENSE | Apache-2.0 |
-| github.com/jmespath/go-jmespath/LICENSE 1.0 | Apache-2.0,kind:header |
+| github.com/jmespath/go-jmespath/LICENSE 1.0 | Apache-2.0 |
 | github.com/aws/aws-sdk-go/NOTICE.txt,Confidence threshold not high enough for any known license |
 | github.com/aws/aws-sdk-go/LICENSE.txt| Apache-2.0 |
 | github.com/bronze1man/goStrongswanVici/LICENSE | MIT |
@@ -390,7 +390,7 @@ The following is a table of dependent libraries and their libraries, as reported
 | github.com/coreos/go-iptables/NOTICE | Confidence threshold not high enough for any known license |
 | github.com/coreos/pkg/LICENSE | Apache-2.0 |
 | github.com/coreos/pkg/NOTICE | Confidence threshold not high enough for any known license |
-| github.com/inconshreveable/mousetrap/LICENSE 1.0 | Apache-2.0,kind:header |
+| github.com/inconshreveable/mousetrap/LICENSE 1.0 | Apache-2.0 |
 | github.com/rubiojr/go-vhd/LICENSE | MIT |
 | github.com/gogo/googleapis/LICENSE | Apache-2.0 |
 | github.com/gogo/protobuf/LICENSE | BSD-3-Clause |
