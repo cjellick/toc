@@ -60,7 +60,7 @@ To achieve this, k3s has the following scope:
     - Embedded network policy controller
   
 ### Value-add to the CNCF ecosystem
-k3s is bringing Kubernetes to environments and use cases that are not easily accessible to upstream Kubernetes, such as edge and IoT. In doing so, it is promoting the overall growth and adoption of Kubernetes. When coupled with Kubernetes's explosive growth in the cloud and the datacenter, k3s is helping Kubeernetes to become the universal compute platform.
+k3s is bringing Kubernetes to environments and use cases that are not easily accessible to upstream Kubernetes, such as edge and IoT. In doing so, it is promoting the overall growth and adoption of Kubernetes. When coupled with Kubernetes's explosive growth in the cloud and the datacenter, k3s is helping Kubernetes to become the universal compute platform.
 
 ### Alignment with other CNCF projects
 ***Does the project align and actively collaborate with other CNCF projects?***
