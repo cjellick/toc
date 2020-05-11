@@ -7,13 +7,13 @@ Authors:
 
 ## Background
 
-Link to Presentation - Coming soon!
+Link to Presentation - Coming soon. We'd like to have some guidance on what you want to see in the presentation.
 
 [**Link to GitHub project**](https://github.com/rancher/k3s)
 
 ### Project Goal
 
-k3s's goal is to provide a CNCF certified, production-grade Kubernetes distribution that is lightweight and easy to configure and operate. In doing so, k3s seeks to promote and improve the adoption of Kubernetes for the following usecases:
+k3s's goal is to provide a CNCF certified, production-grade Kubernetes distribution that is lightweight and easy to configure and operate. In doing so, k3s seeks to promote and improve the adoption of Kubernetes for the following use cases:
 - Edge
 - IoT
 - CI Pipelines
@@ -29,27 +29,26 @@ k3s reached GA quality in November of 2019. It maintains a release cadence consi
 | [v1.17.5](https://github.com/kubernetes/kubernetes/releases/tag/v1.17.5)  | [v1.17.5+k3s1](https://github.com/rancher/k3s/releases/tag/v1.17.5%2Bk3s1)  |
 |  [v1.16.9](https://github.com/kubernetes/kubernetes/releases/tag/v1.16.9) | [v1.16.9+k3s1](https://github.com/rancher/k3s/releases/tag/v1.16.9%2Bk3s1)  |
 
-The project has a vibrant community. It has over 12,000 stars on GitHub and 89 code contibutors. It's most recent stable release has over [60,000 downloads across three different architectures](https://api.github.com/repos/rancher/k3s/releases/24836622).
+The project has a vibrant community. It has over 12,000 stars on GitHub and 89 code contributors. It's most recent stable release has over [60,000 downloads across three different architectures](https://api.github.com/repos/rancher/k3s/releases/24836622).
 
 ### Future Plans
 k3s's roadmap includes:
 - Improving stability and support across operating systems and architectures
 - Enhancing security through SELinux support and CIS compliance
-- Developing HA solutions apprporiate for small edge clusters where even three nodes is cost prohibitive
-- Improving support Kubernetes cloud providers
+- Developing HA solutions appropriate for small edge clusters where even three nodes is cost prohibitive
+- Improving support for Kubernetes cloud providers
 - Improved support for database backends, including embedded etcd
 
 while continuing to maintain release cadence and conformance with upstream Kubernetes.
 
 ## Project Scope
 ### Clear project definition
-As previously state, k3s's is a CNCF certified, production-grade, lightweight Kubernetes distribution. It is packaged with sane defaults to achieve a fully functional cluster with minimal dependencies.
+As previously stated, k3s is a CNCF certified, production-grade, lightweight Kubernetes distribution. It is packaged with sane defaults to achieve a fully functional cluster with minimal dependencies.
 
-To achieve this, k3s has the follwoing scope:
+To achieve this, k3s has the following scope:
 1. Packaged as a single binary
-1. Shipped with Lightweight storage backend based on sqlite3 as the default storage mechanism. etcd3, MySQL, Postgres are also supported
-1. Wrapped in simple launcher that handles a lot of the complexity of TLS and options
-1. Secure by default with reasonable defaults for lightweight environments
+1. Shipped with a lightweight storage backend based on sqlite3 as the default storage mechanism. etcd3, MySQL, Postgres are also supported
+1. Wrapped in simple launcher that handles a lot of the complexity of TLS certificates and kubernetes configuration options
 1. Brings its own dependencies such that just a sane kernel and cgroup mounts are needed. k3s packages the following required dependencies:
     - containerd
     - Flannel
@@ -58,36 +57,36 @@ To achieve this, k3s has the follwoing scope:
     - Host utilities (iptables, socat, etc)
     - Ingress controller (traefik)
     - Embedded service loadbalancer
-    -   Embedded network policy controller
+    - Embedded network policy controller
   
 ### Value-add to the CNCF ecosystem
-k3s is bringing Kubernetes to environments and use cases that are not easily accessible to upstream Kubernets, such as edge and IoT. In doing so, it is promoting the overall growth and adoption of Kubernetes. When coupled with Kubernetes's explosive growth in the cloud and the datacenter, k3s is helping Kubeernetes to become the universal compute platform.
+k3s is bringing Kubernetes to environments and use cases that are not easily accessible to upstream Kubernetes, such as edge and IoT. In doing so, it is promoting the overall growth and adoption of Kubernetes. When coupled with Kubernetes's explosive growth in the cloud and the datacenter, k3s is helping Kubeernetes to become the universal compute platform.
 
 ### Alignment with other CNCF projects
 ***Does the project align and actively collaborate with other CNCF projects?***
 
-k3s is incredibly well aligned with other CNCF projects. It levarages existing CNCF projects such as Kubernetes, CNI, CRI, CSI, containerd, CoreDNS, and Helm. In dooing so, its maintainers contribute to these projects by opening issues, submitting PRs, promoting them on social media, and engaging in technical discussions.
+k3s is incredibly well aligned with other CNCF projects. It leverages existing CNCF projects such as Kubernetes, CNI, CRI, CSI, containerd, CoreDNS, and Helm. In doing so, its maintainers contribute to these projects by opening issues, submitting PRs, promoting them on social media, and engaging in technical discussions.
 
 ***Does the project require any specific versions of projects (or APIs) to interoperate? (e.g. K8s API, CSI, CNI, CRI)?***
 
-k3s generally seeks to support the latest stable versions of the CNCF projects that it levarages. For projects that are themselves closely tied to Kubernetes, such as CNI, CRI, and CSI, k3s supports the same versions that upstream Kubernetes supports.
+k3s generally seeks to support the latest stable versions of the CNCF projects that it leverages. For projects that are themselves closely tied to Kubernetes, such as CNI, CRI, and CSI, k3s supports the same versions that upstream Kubernetes supports.
 
 ***Does the project augment or benefit other CNCF projects?***
 
-As stated, k3s benefits Kubernetes by bringing it to environments that are not easily accessible to upstream Kubernetes. In focusing on secondary use cases and environemnts, k3s also illuminates problems or bugs in the other CNCF projects it leverages. Here are a few examples: [kubernetes#89554](https://github.com/kubernetes/kubernetes/issues/89554), [cri-tools#585](https://github.com/kubernetes-sigs/cri-tools/issues/585), [kubernetes#88376](https://github.com/kubernetes/kubernetes/issues/88376), and [containerd#2991](https://github.com/containerd/containerd/issues/2991).
+As stated, k3s benefits Kubernetes by bringing it to environments that are not easily accessible to upstream Kubernetes. In focusing on secondary use cases and environments, k3s also illuminates problems or bugs in the other CNCF projects it leverages. Here are a few examples: [kubernetes#89554](https://github.com/kubernetes/kubernetes/issues/89554), [cri-tools#585](https://github.com/kubernetes-sigs/cri-tools/issues/585), [kubernetes#88376](https://github.com/kubernetes/kubernetes/issues/88376), and [containerd#2991](https://github.com/containerd/containerd/issues/2991).
 
 ### Anticipated use cases
-With hundreds of thousands of downloads and a large and growing community of users, k3s's usecases are well proven. These usecases have already been stated: edge, IoT, ARM devices, and software appliacnes. One major usecase that has not yet been addressed is that of fleet managment. This is tied directly to the "edge" and IoT use cases, but is worth calling out explicitly. k3s's ease of deployment, operations, and upgrades makes the managing thousands or even millions of small Kubernetes clusters a possibility.
+With hundreds of thousands of downloads and a large and growing community of users, k3s's use cases are well proven. These use cases have already been stated: edge, IoT, ARM devices, and software appliances. One major use case that has not yet been addressed is that of fleet management. This is tied directly to the "edge" and IoT use cases, but is worth calling out explicitly. k3s's ease of deployment, operations, and upgrades makes the managing thousands or even millions of small Kubernetes clusters a possibility.
 
 Alignment with SIG Reference Model
 Does the project align with the SIG CNCF reference model and which capabilities does it require/provide at each level of the reference model.
 
 ### High level architecture
-Being a distribution of Kubernetes, k3s's architecture looks largely similar to that of Kubernetes's itself. However, there are a few key changes:
-1. Kubernetes control plane processes such as the api server, schedler, and controller-manager on server nodes and kubelet and kube-proxy on agent nodes are embedded withing a single process
+Being a distribution of Kubernetes, k3s's architecture looks largely similar to that of Kubernetes itself. However, there are a few key changes:
+1. Kubernetes control plane processes such as the api server, schedler, and controller-manager on server nodes and kubelet and kube-proxy on agent nodes are embedded within a single process
 1. Flannel for CNI is managed within the k3s process
 1. Containerd for CRI is shipped with and launched by k3s
-1. By default, the datastore backend is an embedded SQLite databse rather than etcd
+1. By default, the datastore backend is an embedded SQLite database rather than etcd
 1. A websocket-based tunnel proxy is used to manage all control plane communication between agent and server nodes.
 
 This architecture is illustrated in the following diagram: 
@@ -129,9 +128,9 @@ _List the repos for the project and their current license_
 
 _List any dependent repos (upstream/downstream) that are required to build the project (including but not limited to libraries, commercial tools, plugins)_
 
-k3s is committed to using opensource throughout its build process. GitHub is used to maintain the code. Drone is used as the CI system.
+k3s is committed to using open source throughout its build process. GitHub is used to maintain the code. Drone is used as the CI system.
 
-The following is a table of dependent libraries and their libaries, as reported by [askalono](https://github.com/amzn/askalono/releases)
+The following is a table of dependent libraries and their libraries, as reported by [askalono](https://github.com/amzn/askalono/releases)
 | Library's license file | License |
 | ------------- | ------------- |
 | gopkg.in/natefinch/lumberjack.v2/LICENSE | MIT |
@@ -460,11 +459,11 @@ k3s is deployed as a single binary on one or more machines. This is covered in d
 
 _How is it orchestrated?_
 
-k3s is orchestrated by sharing a regisration token and URL between nodes in the cluster. A node joins the cluster by hitting the registration URL with the shared token.
+k3s is orchestrated by sharing a registration token and URL between nodes in the cluster. A node joins the cluster by hitting the registration URL with the shared token.
 
 _How will the project benefit from acceptance into the CNCF?_
 
-k3s will benefit from accpetance into the CNCF by seeing wider adoption and contributions. Organizations that put a high value on vendor-neutral platforms will see that k3s is a succesful opensource technology that goes beyond a singal company.
+k3s will benefit from acceptance into the CNCF by seeing wider adoption and contributions. Organizations that put a high value on vendor-neutral platforms will see that k3s is a successful open source technology that goes beyond a single company.
 
 
 _Has a security assessment by the security SIG been done? If not, what is the status/progress of the assessment?_
