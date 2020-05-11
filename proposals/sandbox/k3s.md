@@ -83,27 +83,335 @@ Alignment with SIG Reference Model
 Does the project align with the SIG CNCF reference model and which capabilities does it require/provide at each level of the reference model.
 
 ### High level architecture
-Describe the overall architecture of the project. Feel free to add diagrams.
+Being a distribution of Kubernetes, k3s's architecture looks largely similar to that of Kubernetes's itself. However, there are a few key changes:
+1. Kubernetes control plane processes such as the api server, schedler, and controller-manager on server nodes and kubelet and kube-proxy on agent nodes are embedded withing a single process
+1. Flannel for CNI is managed within the k3s process
+1. Containerd for CRI is shipped with and launched by k3s
+1. By default, the datastore backend is an embedded SQLite databse rather than etcd
+1. A websocket-based tunnel proxy is used to manage all control plane communication between agent and server nodes.
+
+This architecture is illustrated in the following diagram: 
+![k3s](https://k3s.io/images/how-it-works-k3s.svg "K3s Architecture")
+
 
 ## Formal Requirements
-Document that the project fulfills the requirements as documented in the CNCF graduation criteria for sandbox
+Here is k3s's status on [the formal requirements](https://github.com/cncf/toc/blob/master/process/graduation_criteria.adoc#sandbox-stage)
+- Require 3 of the 11 TOC members to step forward as sponsors to enter the sandbox - Pending
+- Adopt the CNCF Code of Conduct - [k3s is adopting the CNCF Community Code of Conduct](https://github.com/rancher/k3s/pull/1783)
+- Adhere to CNCF IP Policy (including trademark transferred) - We agree to this policy and will work through the requirements with the CNCF as the process moves forward
+- List their sandbox status prominently on website/readme - We agree to do this
 
-Are there any anticipated issues with any of the criteria ?
+_Are there any anticipated issues with any of the criteria?_
+No, we anticipate no issues.
 
-Has the TOC been approached for sponsorship? If yes, which TOC members have agreed to sponsor the project?
+_Has the TOC been approached for sponsorship? If yes, which TOC members have agreed to sponsor the project?_
+Not officially.
 
 ## CNCF IP Policy
 Becoming a sandbox project requires adoption of the CNCF IP Policy: https://github.com/cncf/foundation/blob/master/charter.md#11-ip-policy
 
 Note: there is a grace period after becoming a sandbox period to enable projects to adopt the policy, however, some prep is required to ensure there are no major blockers.
 
-Has the IP policy been reviewed?
+_Has the IP policy been reviewed?_
+Yes.
 
 List the repos for the project and their current license
+- github.com/rancher/k3s - Apache 2.0
+- github.com/rancher/k3s-upgrade - Apache 2.0
+- github.com/rancher/helm-controller - Apache 2.0
+- github.com/rancher/klipper-helm - Apache 2.0
+- github.com/rancher/klipper-lb - Apache 2.0
+
 
 List any dependent repos (upstream/downstream) that are required to build the project (including but not limited to libraries, commercial tools, plugins)
+k3s is committed to using opensource throughout its build process. GitHub is used to maintain the code. Drone is used as the CI system.
 
-What actions are required to be compliant with the IP policy?
+The following is a table of dependent libraries and their libaries, as reported by [askalono](https://github.com/amzn/askalono/releases)
+| Library's license file | License |
+| ------------- | ------------- |
+| gopkg.in/natefinch/lumberjack.v2/LICENSE | MIT |
+| gopkg.in/yaml.v2/LICENSE | Apache-2.0 |
+| gopkg.in/yaml.v2/NOTICE 1.0 | Apache-2.0 |
+| gopkg.in/yaml.v2/LICENSE.libyaml  | MIT |
+| gopkg.in/robfig/cron.v2/LICENSE 0.966967 | MIT |
+| gopkg.in/square/go-jose.v2/LICENSE | Apache-2.0 |
+| gopkg.in/square/go-jose.v2/json/LICENSE  | BSD-3-Clause |
+| gopkg.in/warnings.v0/LICENSE  | BSD-2-Clause |
+| gopkg.in/gcfg.v1/LICENSE | BSD-3-Clause |
+| gopkg.in/inf.v0/LICENSE | BSD-3-Clause |
+| cloud.google.com/go/LICENSE | Apache-2.0 |
+| go.opencensus.io/LICENSE | Apache-2.0 |
+| vbom.ml/util/LICENSE | MIT |
+| go.etcd.io/bbolt/LICENSE | MIT |
+| go.etcd.io/etcd/LICENSE | Apache-2.0 |
+| go.etcd.io/etcd/NOTICE | Confidence threshold not high enough for any known license |
+| gonum.org/v1/gonum/LICENSE  | BSD-3-Clause |
+| google.golang.org/grpc/LICENSE | Apache-2.0 |
+| google.golang.org/genproto/LICENSE | Apache-2.0 |
+| google.golang.org/appengine/LICENSE | Apache-2.0 |
+| google.golang.org/api/LICENSE  | BSD-3-Clause |
+| google.golang.org/api/googleapi/internal/uritemplates/LICENSE  | MIT |
+| k8s.io/metrics/LICENSE | Apache-2.0 |
+| k8s.io/heapster/LICENSE | Apache-2.0 |
+| k8s.io/client-go/LICENSE | Apache-2.0 |
+| k8s.io/kube-aggregator/LICENSE | Apache-2.0 |
+| k8s.io/cloud-provider/LICENSE | Apache-2.0 |
+| k8s.io/cluster-bootstrap/LICENSE | Apache-2.0 |
+| k8s.io/cri-api/LICENSE | Apache-2.0 |
+| k8s.io/apiextensions-apiserver/LICENSE | Apache-2.0 |
+| k8s.io/gengo/LICENSE | Apache-2.0 |
+| k8s.io/kube-openapi/LICENSE | Apache-2.0 |
+| k8s.io/kube-controller-manager/LICENSE | Apache-2.0 |
+| k8s.io/utils/LICENSE | Apache-2.0 |
+| k8s.io/utils/inotify/LICENSE  | BSD-3-Clause |
+| k8s.io/utils/inotify/PATENTS | Confidence threshold not high enough for any known license |
+| k8s.io/legacy-cloud-providers/LICENSE | Apache-2.0 |
+| k8s.io/kube-scheduler/LICENSE | Apache-2.0 |
+| k8s.io/cli-runtime/LICENSE | Apache-2.0 |
+| k8s.io/csi-translation-lib/LICENSE | Apache-2.0 |
+| k8s.io/kubelet/LICENSE | Apache-2.0 |
+| k8s.io/kube-proxy/LICENSE | Apache-2.0 |
+| k8s.io/api/LICENSE | Apache-2.0 |
+| k8s.io/apiserver/LICENSE | Apache-2.0 |
+| k8s.io/kubernetes/LICENSE | Apache-2.0 |
+| k8s.io/kubernetes/third_party/forked/golang/LICENSE  | BSD-3-Clause |
+| k8s.io/kubernetes/third_party/forked/golang/PATENTS | Confidence threshold not high enough for any known license |
+| k8s.io/kubernetes/third_party/forked/gonum/graph/LICENSE  | BSD-3-Clause |
+| k8s.io/klog/LICENSE | Apache-2.0 |
+| k8s.io/kubectl/LICENSE | Apache-2.0 |
+| k8s.io/code-generator/LICENSE | Apache-2.0 |
+| k8s.io/apimachinery/LICENSE | Apache-2.0 |
+| k8s.io/component-base/LICENSE | Apache-2.0 |
+| go.mongodb.org/mongo-driver/LICENSE | Apache-2.0 |
+| go.uber.org/zap/LICENSE.txt  | MIT |
+| go.uber.org/atomic/LICENSE.txt  | MIT |
+| go.uber.org/multierr/LICENSE.txt  | MIT |
+| golang.org/x/crypto/LICENSE  | BSD-3-Clause |
+| golang.org/x/crypto/PATENTS | Confidence threshold not high enough for any known license |
+| golang.org/x/tools/LICENSE  | BSD-3-Clause |
+| golang.org/x/tools/PATENTS | Confidence threshold not high enough for any known license |
+| golang.org/x/net/LICENSE  | BSD-3-Clause |
+| golang.org/x/net/PATENTS | Confidence threshold not high enough for any known license |
+| golang.org/x/oauth2/LICENSE  | BSD-3-Clause |
+| golang.org/x/time/LICENSE  | BSD-3-Clause |
+| golang.org/x/time/PATENTS | Confidence threshold not high enough for any known license |
+| golang.org/x/sys/LICENSE  | BSD-3-Clause |
+| golang.org/x/sys/PATENTS | Confidence threshold not high enough for any known license |
+| golang.org/x/text/LICENSE  | BSD-3-Clause |
+| golang.org/x/text/PATENTS | Confidence threshold not high enough for any known license |
+| golang.org/x/sync/LICENSE  | BSD-3-Clause |
+| golang.org/x/sync/PATENTS | Confidence threshold not high enough for any known license |
+| sigs.k8s.io/structured-merge-diff/v3/LICENSE | Apache-2.0 |
+| sigs.k8s.io/yaml/LICENSE | Confidence threshold not high enough for any known license |
+| sigs.k8s.io/apiserver-network-proxy/konnectivity-client/LICENSE | Apache-2.0 |
+| sigs.k8s.io/kustomize/LICENSE | Apache-2.0 |
+| github.com/Rican7/retry/LICENSE  | MIT |
+| github.com/gorilla/websocket/LICENSE | BSD-2-Clause |
+| github.com/gorilla/mux/LICENSE  | BSD-3-Clause |
+| github.com/mitchellh/go-wordwrap/LICENSE.md| MIT |
+| github.com/mitchellh/mapstructure/LICENSE | MIT |
+| github.com/cyphar/filepath-securejoin/LICENSE  | BSD-3-Clause |
+| github.com/gophercloud/gophercloud/LICENSE | Apache-2.0 |
+| github.com/natefinch/lumberjack/LICENSE | MIT |
+| github.com/davecgh/go-spew/LICENSE  | ISC |
+| github.com/PuerkitoBio/urlesc/LICENSE  | BSD-3-Clause |
+| github.com/PuerkitoBio/purell/LICENSE  | BSD-3-Clause |
+| github.com/blang/semver/LICENSE  | MIT |
+| github.com/karrick/godirwalk/LICENSE  | BSD-2-Clause |
+| github.com/kubernetes-sigs/cri-tools/LICENSE | Apache-2.0 |
+| github.com/evanphx/json-patch/LICENSE | BSD-3-Clause |
+| github.com/urfave/cli/LICENSE  | MIT |
+| github.com/urfave/cli/v2/LICENSE  | MIT |
+| github.com/docker/libnetwork/LICENSE | Apache-2.0 |
+| github.com/docker/go-metrics/LICENSE | Apache-2.0 |
+| github.com/docker/go-metrics/LICENSE.docs| CC-BY-SA-4.0 |
+| github.com/docker/go-metrics/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/docker/go-events/LICENSE | Apache-2.0 |
+| github.com/docker/docker/LICENSE | Apache-2.0 |
+| github.com/docker/docker/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/docker/docker/pkg/symlink/LICENSE.APACHE | Apache-2.0 |
+| github.com/docker/docker/pkg/symlink/LICENSE.BSD  | BSD-3-Clause |
+| github.com/docker/go-connections/LICENSE | Apache-2.0 |
+| github.com/docker/distribution/LICENSE | Apache-2.0 |
+| github.com/docker/go-units/LICENSE | Apache-2.0 |
+| github.com/docker/spdystream/LICENSE | Apache-2.0 |
+| github.com/docker/spdystream/LICENSE.docs| CC-BY-SA-4.0 |
+| github.com/JeffAshton/win_pdh/LICENSE | BSD-3-Clause |
+| github.com/Nvveen/Gotty/LICENSE  | BSD-2-Clause-FreeBSD |
+| github.com/grpc-ecosystem/go-grpc-prometheus/LICENSE | Apache-2.0 |
+| github.com/daviddengcn/go-colortext/LICENSE | Confidence threshold not high enough for any known license |
+| github.com/robfig/cron/LICENSE 0.966967 | MIT |
+| github.com/tchap/go-patricia/LICENSE | MIT |
+| github.com/fsnotify/fsnotify/LICENSE  | BSD-3-Clause |
+| github.com/beorn7/perks/LICENSE  | MIT |
+| github.com/go-bindata/go-bindata/LICENSE | Confidence threshold not high enough for any known license |
+| github.com/go-sql-driver/mysql/LICENSE 1.0 | MPL-2.0,aliases:[MPL-2.0-no-copyleft-exception] |,containing:[] | |
+| github.com/go-stack/stack/LICENSE.md| MIT |
+| github.com/canonical/go-dqlite/LICENSE | Apache-2.0 |
+| github.com/vishvananda/netns/LICENSE | Apache-2.0 |
+| github.com/vishvananda/netlink/LICENSE | Apache-2.0 |
+| github.com/hashicorp/golang-lru/LICENSE 1.0 | MPL-2.0,aliases:[MPL-2.0-no-copyleft-exception] |,containing:[] | |
+| github.com/Azure/go-ansiterm/LICENSE | MIT |
+| github.com/Azure/go-autorest/tracing/LICENSE | Apache-2.0 |
+| github.com/Azure/go-autorest/logger/LICENSE | Apache-2.0 |
+| github.com/Azure/go-autorest/autorest/mocks/LICENSE | Apache-2.0 |
+| github.com/Azure/go-autorest/autorest/LICENSE | Apache-2.0 |
+| github.com/Azure/go-autorest/autorest/date/LICENSE | Apache-2.0 |
+| github.com/Azure/go-autorest/autorest/to/LICENSE | Apache-2.0 |
+| github.com/Azure/go-autorest/autorest/validation/LICENSE | Apache-2.0 |
+| github.com/Azure/go-autorest/autorest/adal/LICENSE | Apache-2.0 |
+| github.com/Azure/azure-sdk-for-go/LICENSE | Apache-2.0 |
+| github.com/Azure/azure-sdk-for-go/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/golang/groupcache/LICENSE | Apache-2.0 |
+| github.com/golang/mock/LICENSE | Apache-2.0 |
+| github.com/golang/protobuf/LICENSE  | BSD-3-Clause |
+| github.com/json-iterator/go/LICENSE  | MIT |
+| github.com/miekg/dns/LICENSE | BSD-3-Clause |
+| github.com/miekg/dns/COPYRIGHT,Confidence threshold not high enough for any known license |
+| github.com/GoogleCloudPlatform/k8s-cloud-provider/LICENSE | Apache-2.0 |
+| github.com/google/gofuzz/LICENSE | Apache-2.0 |
+| github.com/google/go-cmp/LICENSE  | BSD-3-Clause |
+| github.com/google/btree/LICENSE | Apache-2.0 |
+| github.com/google/tcpproxy/LICENSE | Apache-2.0 |
+| github.com/google/uuid/LICENSE  | BSD-3-Clause |
+| github.com/google/cadvisor/LICENSE | Apache-2.0 |
+| github.com/buger/jsonparser/LICENSE  | MIT |
+| github.com/Microsoft/go-winio/LICENSE | MIT |
+| github.com/Microsoft/hcsshim/LICENSE | MIT |
+| github.com/mrunalp/fileutils/LICENSE | Apache-2.0 |
+| github.com/shurcooL/sanitized_anchor_name/LICENSE  | MIT |
+| github.com/containerd/continuity/LICENSE | Apache-2.0 |
+| github.com/containerd/containerd/LICENSE | Apache-2.0 |
+| github.com/containerd/containerd/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/containerd/typeurl/LICENSE | Apache-2.0 |
+| github.com/containerd/go-cni/LICENSE | Apache-2.0 |
+| github.com/containerd/go-runc/LICENSE | Apache-2.0 |
+| github.com/containerd/fifo/LICENSE | Apache-2.0 |
+| github.com/containerd/cgroups/LICENSE | Apache-2.0 |
+| github.com/containerd/ttrpc/LICENSE | Apache-2.0 |
+| github.com/containerd/cri/LICENSE | Apache-2.0 |
+| github.com/containerd/console/LICENSE | Apache-2.0 |
+| github.com/mxk/go-flowrate/LICENSE  | BSD-3-Clause |
+| github.com/gregjones/httpcache/LICENSE.txt  | MIT |
+| github.com/konsorten/go-windows-terminal-sequences/LICENSE  | MIT |
+| github.com/liggitt/tabwriter/LICENSE  | BSD-3-Clause |
+| github.com/pquerna/cachecontrol/LICENSE | Apache-2.0 |
+| github.com/go-openapi/loads/LICENSE | Apache-2.0 |
+| github.com/go-openapi/strfmt/LICENSE | Apache-2.0 |
+| github.com/go-openapi/validate/LICENSE | Apache-2.0 |
+| github.com/go-openapi/analysis/LICENSE | Apache-2.0 |
+| github.com/go-openapi/runtime/LICENSE | Apache-2.0 |
+| github.com/go-openapi/spec/LICENSE | Apache-2.0 |
+| github.com/go-openapi/spec/license.go| Apache-2.0,kind:header |
+| github.com/go-openapi/swag/LICENSE | Apache-2.0 |
+| github.com/go-openapi/errors/LICENSE | Apache-2.0 |
+| github.com/go-openapi/jsonpointer/LICENSE | Apache-2.0 |
+| github.com/go-openapi/jsonreference/LICENSE | Apache-2.0 |
+| github.com/peterbourgon/diskv/LICENSE  | MIT |
+| github.com/checkpoint-restore/go-criu/LICENSE | Apache-2.0 |
+| github.com/juju/errors/LICENSE 0.912832 | LGPL-3.0-only,aliases:[LGPL-3.0-or-later] |,containing:[] | |
+| github.com/lxc/lxd/COPYING| Apache-2.0 |
+| github.com/imdario/mergo/LICENSE  | BSD-3-Clause |
+| github.com/jonboulle/clockwork/LICENSE | Apache-2.0 |
+| github.com/fatih/camelcase/LICENSE.md| MIT |
+| github.com/NYTimes/gziphandler/LICENSE | Apache-2.0 |
+| github.com/euank/go-kmsg-parser/LICENSE | Apache-2.0 |
+| github.com/dgrijalva/jwt-go/LICENSE  | MIT |
+| github.com/sirupsen/logrus/LICENSE | MIT |
+| github.com/mistifyio/go-zfs/LICENSE | Apache-2.0 |
+| github.com/godbus/dbus/LICENSE | BSD-2-Clause |
+| github.com/BurntSushi/toml/COPYING| MIT |
+| github.com/googleapis/gnostic/LICENSE | Apache-2.0 |
+| github.com/exponent-io/jsonpath/LICENSE | MIT |
+| github.com/containernetworking/plugins/LICENSE | Apache-2.0 |
+| github.com/containernetworking/cni/LICENSE | Apache-2.0 |
+| github.com/bhendo/go-powershell/LICENSE | MIT |
+| github.com/spf13/afero/LICENSE.txt 0.94437 | Apache-2.0 |
+| github.com/spf13/pflag/LICENSE  | BSD-3-Clause |
+| github.com/spf13/cobra/LICENSE.txt 0.94437 | Apache-2.0 |
+| github.com/syndtr/gocapability/LICENSE  | BSD-2-Clause |
+| github.com/modern-go/reflect2/LICENSE | Apache-2.0 |
+| github.com/modern-go/concurrent/LICENSE | Apache-2.0 |
+| github.com/armon/circbuf/LICENSE | MIT |
+| github.com/seccomp/libseccomp-golang/LICENSE  | BSD-2-Clause |
+| github.com/cpuguy83/go-md2man/v2/LICENSE.md| MIT |
+| github.com/matttproud/golang_protobuf_extensions/LICENSE | Apache-2.0 |
+| github.com/matttproud/golang_protobuf_extensions/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/lib/pq/LICENSE.md  | MIT |
+| github.com/opencontainers/image-spec/LICENSE | Apache-2.0 |
+| github.com/opencontainers/runc/LICENSE | Apache-2.0 |
+| github.com/opencontainers/runc/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/opencontainers/go-digest/LICENSE.code| Apache-2.0 |
+| github.com/opencontainers/go-digest/LICENSE.docs| CC-BY-SA-4.0 |
+| github.com/opencontainers/selinux/LICENSE | Apache-2.0 |
+| github.com/opencontainers/runtime-spec/LICENSE | Apache-2.0 |
+| github.com/rakelkar/gonetsh/LICENSE | Apache-2.0 |
+| github.com/asaskevich/govalidator/LICENSE | MIT |
+| github.com/rancher/dynamiclistener/LICENSE | Apache-2.0 |
+| github.com/rancher/wrangler/LICENSE | Apache-2.0 |
+| github.com/rancher/wrangler-api/LICENSE | Apache-2.0 |
+| github.com/rancher/kine/LICENSE | Apache-2.0 |
+| github.com/rancher/helm-controller/LICENSE | Apache-2.0 |
+| github.com/rancher/remotedialer/LICENSE | Apache-2.0 |
+| github.com/jmespath/go-jmespath/LICENSE 1.0 | Apache-2.0,kind:header |
+| github.com/aws/aws-sdk-go/NOTICE.txt,Confidence threshold not high enough for any known license |
+| github.com/aws/aws-sdk-go/LICENSE.txt| Apache-2.0 |
+| github.com/bronze1man/goStrongswanVici/LICENSE | MIT |
+| github.com/container-storage-interface/spec/LICENSE | Apache-2.0 |
+| github.com/prometheus/client_golang/LICENSE | Apache-2.0 |
+| github.com/prometheus/client_golang/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/prometheus/client_model/LICENSE | Apache-2.0 |
+| github.com/prometheus/client_model/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/prometheus/common/LICENSE | Apache-2.0 |
+| github.com/prometheus/common/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/prometheus/procfs/LICENSE | Apache-2.0 |
+| github.com/prometheus/procfs/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/satori/go.uuid/LICENSE  | MIT |
+| github.com/mailru/easyjson/LICENSE  | MIT |
+| github.com/mindprince/gonvml/LICENSE | Apache-2.0 |
+| github.com/MakeNowJust/heredoc/LICENSE | MIT |
+| github.com/emicklei/go-restful/LICENSE | MIT |
+| github.com/lithammer/dedent/LICENSE | MIT |
+| github.com/russross/blackfriday/v2/LICENSE.txt| BSD-2-Clause |
+| github.com/russross/blackfriday/LICENSE.txt| BSD-2-Clause |
+| github.com/flosch/pongo2/LICENSE | MIT |
+| github.com/cilium/ebpf/LICENSE  | MIT |
+| github.com/theckman/go-flock/LICENSE  | BSD-3-Clause |
+| github.com/coreos/go-systemd/LICENSE | Apache-2.0 |
+| github.com/coreos/go-systemd/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/coreos/flannel/LICENSE | Apache-2.0 |
+| github.com/coreos/flannel/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/coreos/go-oidc/LICENSE | Apache-2.0 |
+| github.com/coreos/go-oidc/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/coreos/go-iptables/LICENSE | Apache-2.0 |
+| github.com/coreos/go-iptables/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/coreos/pkg/LICENSE | Apache-2.0 |
+| github.com/coreos/pkg/NOTICE | Confidence threshold not high enough for any known license |
+| github.com/inconshreveable/mousetrap/LICENSE 1.0 | Apache-2.0,kind:header |
+| github.com/rubiojr/go-vhd/LICENSE | MIT |
+| github.com/gogo/googleapis/LICENSE | Apache-2.0 |
+| github.com/gogo/protobuf/LICENSE | BSD-3-Clause |
+| github.com/mattn/go-sqlite3/LICENSE | MIT |
+| github.com/mattn/go-shellwords/LICENSE | MIT |
+| github.com/chai2010/gettext-go/LICENSE  | BSD-3-Clause |
+| github.com/rootless-containers/rootlesskit/LICENSE | Apache-2.0 |
+| github.com/pkg/errors/LICENSE  | BSD-2-Clause |
+| github.com/munnerz/goautoneg/LICENSE 0.953917 | BSD-3-Clause |
+| github.com/ghodss/yaml/LICENSE | Confidence threshold not high enough for any known license |
+| github.com/vmware/govmomi/vim25/xml/LICENSE  | BSD-3-Clause |
+| github.com/vmware/govmomi/LICENSE.txt| Apache-2.0 |
+
+Additionally, the following technologies are shipped with k3s:
+| Technology | License |
+| ------------- | ------------- |
+| https://github.com/containous/traefik | MIT |
+| https://github.com/helm/helm | Apache 2.0 |
+| https://github.com/coredns/coredns | Apache 2.0 |
+
+
+_What actions are required to be compliant with the IP policy?_
+
+This is under review.
 
 ## Other Considerations
 ### _Please note, these are not gating criteria but rather to:_
@@ -115,27 +423,36 @@ What actions are required to be compliant with the IP policy?
 - Identify and rectify any significant issues / blockers prior to presenting to the TOC and acceptance as a CNCF project
 
 ### Cloud Native
-Does the project meet the definition of Cloud Native? The CNCF charter states:
+_Does the project meet the definition of Cloud Native? The CNCF charter states:_
 ```
 “Cloud native technologies empower organizations to build and run scalable applications in modern, dynamic environments such as public, private, and hybrid clouds. Containers, service meshes, microservices, immutable infrastructure, and declarative APIs exemplify this approach.
 
 
 “These techniques enable loosely coupled systems that are resilient, manageable, and observable. Combined with robust automation, they allow engineers to make high-impact changes frequently and predictably with minimal toil.”
 ```
+Yes.
 
 ### Project and Code Quality
-Are there any metrics around code quality? Are there good examples of code reviews? Are there enforced coding standards?
+_Are there any metrics around code quality? Are there good examples of code reviews? Are there enforced coding standards?_
 
-What are the performance goals and results? What performance tradeoffs have been made? What is the resource cost?
+_What are the performance goals and results? What performance tradeoffs have been made? What is the resource cost?_
 
-What is the CI/CD system? Are there code coverage metrics? What types of tests exist?
+_What is the CI/CD system? Are there code coverage metrics? What types of tests exist?_
+- Drone is the CI system. PRs are exercised here: https://drone-pr.rancher.io/rancher/k3s
+- We largely leverage the Sonobuoy test suites from Kubernetes. Additionally, we are currently developing automated tests for exercising the different installation configurations possible with k3s.
 
-Is there documentation?
+_Is there documentation?_
+Yes, it is currently hosted at https://rancher.com/docs/k3s/latest/en/
 
-How is it deployed?
+_How is it deployed?_
+k3s is deployed as a single binary on one or more machines. This is covered in detail in the documentation.
 
-How is it orchestrated?
+_How is it orchestrated?_
+k3s is orchestrated by sharing a regisration token and URL between nodes in the cluster. A node joins the cluster by hitting the registration URL with the shared token.
 
-How will the project benefit from acceptance into the CNCF?
+_How will the project benefit from acceptance into the CNCF?_
+k3s will benefit from accpetance into the CNCF by seeing wider adoption and contributions. Organizations that put a high value on vendor-neutral platforms will see that k3s is a succesful opensource technology that goes beyond a singal company.
 
-Has a security assessment by the security SIG been done? If not, what is the status/progress of the assessment?
+
+_Has a security assessment by the security SIG been done? If n_ot, what is the status/progress of the assessment?_
+Not yet.
