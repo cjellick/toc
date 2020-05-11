@@ -102,20 +102,24 @@ Here is k3s's status on [the formal requirements](https://github.com/cncf/toc/bl
 - List their sandbox status prominently on website/readme - We agree to do this
 
 _Are there any anticipated issues with any of the criteria?_
+
 No, we anticipate no issues.
 
 _Has the TOC been approached for sponsorship? If yes, which TOC members have agreed to sponsor the project?_
+
 Not officially.
 
 ## CNCF IP Policy
-Becoming a sandbox project requires adoption of the CNCF IP Policy: https://github.com/cncf/foundation/blob/master/charter.md#11-ip-policy
+_Becoming a sandbox project requires adoption of the CNCF IP Policy: https://github.com/cncf/foundation/blob/master/charter.md#11-ip-policy_
 
-Note: there is a grace period after becoming a sandbox period to enable projects to adopt the policy, however, some prep is required to ensure there are no major blockers.
+_Note: there is a grace period after becoming a sandbox period to enable projects to adopt the policy, however, some prep is required to ensure there are no major blockers._
 
 _Has the IP policy been reviewed?_
+
 Yes.
 
-List the repos for the project and their current license
+_List the repos for the project and their current license_
+
 - github.com/rancher/k3s - Apache 2.0
 - github.com/rancher/k3s-upgrade - Apache 2.0
 - github.com/rancher/helm-controller - Apache 2.0
@@ -123,7 +127,8 @@ List the repos for the project and their current license
 - github.com/rancher/klipper-lb - Apache 2.0
 
 
-List any dependent repos (upstream/downstream) that are required to build the project (including but not limited to libraries, commercial tools, plugins)
+_List any dependent repos (upstream/downstream) that are required to build the project (including but not limited to libraries, commercial tools, plugins)_
+
 k3s is committed to using opensource throughout its build process. GitHub is used to maintain the code. Drone is used as the CI system.
 
 The following is a table of dependent libraries and their libaries, as reported by [askalono](https://github.com/amzn/askalono/releases)
@@ -430,6 +435,7 @@ _Does the project meet the definition of Cloud Native? The CNCF charter states:_
 
 “These techniques enable loosely coupled systems that are resilient, manageable, and observable. Combined with robust automation, they allow engineers to make high-impact changes frequently and predictably with minimal toil.”
 ```
+
 Yes.
 
 ### Project and Code Quality
@@ -437,22 +443,30 @@ _Are there any metrics around code quality? Are there good examples of code revi
 
 _What are the performance goals and results? What performance tradeoffs have been made? What is the resource cost?_
 
+We've used the Kubernetes scale tests to judge performance and help users size their k3s instances. This is documented here: https://rancher.com/docs/k3s/latest/en/installation/installation-requirements/#cpu-and-memory
+
 _What is the CI/CD system? Are there code coverage metrics? What types of tests exist?_
+
 - Drone is the CI system. PRs are exercised here: https://drone-pr.rancher.io/rancher/k3s
 - We largely leverage the Sonobuoy test suites from Kubernetes. Additionally, we are currently developing automated tests for exercising the different installation configurations possible with k3s.
 
 _Is there documentation?_
+
 Yes, it is currently hosted at https://rancher.com/docs/k3s/latest/en/
 
 _How is it deployed?_
+
 k3s is deployed as a single binary on one or more machines. This is covered in detail in the documentation.
 
 _How is it orchestrated?_
+
 k3s is orchestrated by sharing a regisration token and URL between nodes in the cluster. A node joins the cluster by hitting the registration URL with the shared token.
 
 _How will the project benefit from acceptance into the CNCF?_
+
 k3s will benefit from accpetance into the CNCF by seeing wider adoption and contributions. Organizations that put a high value on vendor-neutral platforms will see that k3s is a succesful opensource technology that goes beyond a singal company.
 
 
-_Has a security assessment by the security SIG been done? If n_ot, what is the status/progress of the assessment?_
-Not yet.
+_Has a security assessment by the security SIG been done? If not, what is the status/progress of the assessment?_
+
+No.
